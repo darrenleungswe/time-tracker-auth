@@ -1,6 +1,7 @@
 package swe.darrenleung.timetrackerauth.entity;
 
 import jakarta.persistence.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.UUID;
 
@@ -17,6 +18,14 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    public User() {
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
 
 
     public UUID getId() {
@@ -40,6 +49,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 }
