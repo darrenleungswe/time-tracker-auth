@@ -26,8 +26,7 @@ public class User {
         this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
     }
-
-
+    
     public UUID getId() {
         return id;
     }
